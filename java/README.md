@@ -15,6 +15,7 @@
 12. [static 블록의 사용 예](#static-블록의-사용-예)
 13. [어노테이션](#어노테이션)
 14. [try-catch-finally vs try-with-resources](#try-catch-finally-vs-try-with-resources)
+15. [Enum](#enum)
 
 ## 자바의 특징
 * 객체 지향을 위해 설계된 언어
@@ -321,6 +322,7 @@ int result = a & b; // 0001 (둘이 같아야만 1)
 * static block은 한 번만 수행된다.
 * static block에서는 클래스 변수만 사용할 수 있다. 메서드 또한 내부에 있는 다른 메서드를 호출하면 그 메서드도 static이어야 한다.
 * 한 번만 수행되기에, 클래스 초기화 때 꼭 수행되어야 할 작업이 있을 때 유용하게 사용할 수 있다.
+
 ## 어노테이션
 [참고 링크](https://ittrue.tistory.com/156) + 자바의 정석 1권
 * 어노테이션 (annotation)은 쉽게 말해 프로그램 (컴파일러)에게 부가적인 정보를 제공하는 것이다. 주석은 사람에게 추가정보를 제공하지만, 어노테이션은 컴파일러에게 알리는 데 주 목적이 있다.
@@ -398,3 +400,30 @@ try (FileReader fr = new FileReader("file.txt")) {
 * 기존 Closable이 AutoClosable을 상속하도록 설정 - `하위 호환성 100% 달성`을 위함
 * try 및 finally 작업에서 예외가 발생할 경우 모든 발생한 예외를 보여줌
 * 여러 finally 작업을 할 때 한 자원에서 예외가 발생할 경우 다른 자원의 close를 제대로 하지 못했던 문제를 해결해 줌 - 컴파일러가 finally에서의 모든 경우를 try-catch-finally로 변환
+
+## Enum
+[참고 링크](https://velog.io/@mooh2jj/Java-Enum%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0)
+* enum을 이용하면 `상수의 집합`으로 표현할 수 있다.
+* enum 생성자는 package-private (default)이나 private으로만 가능하다.
+* 값이 추가되거나 변경되는 경우 한 곳에서만 변경하면 되기 때문에 `유지보수`가 용이하다.
+* enum은 태생적으로 `싱글턴`이 보장되도록 만들어졌다.
+* 컴파일 시점에 `타입 안정성`을 제공한다. 특정 범위의 값만 이용할 수 있기 때문이다.
+* 개인적인 생각으로는 `묻지 말고 시켜라` 전략을 시킴으로써 책임을 적절하게 할당할 수 있다는 장점이 있다고 생각한다. 예를 들어 지정된 자동차 회사에 따라 정해진 할인 금액을 조회하고자 한다면 메인 클래스에서 각 이름을 case로 작성하는 게 아니라, Enum 클래스에게 메서드로 반환하게끔 하는 것이다.
+    ```java
+    class enum CarCompany {
+        BMW("BMW", 500),
+        AUDI("AUDI", 1000);
+  
+        private final String name;
+        private final int money;
+  
+        private CarCompany(final String name, final int money) {
+            this.name = name;
+            this.money = money;
+        }
+  
+        public static int calculateMoney(final String name) {
+            // name에 맞는 CarCompany를 조회 후 반환하도록 설정
+        }
+    }
+    ```
