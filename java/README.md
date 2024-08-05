@@ -20,3 +20,4 @@
 17. [스레드](https://github.com/devholic22/Weekly_F-Lab_review/blob/main/java/17_%EC%8A%A4%EB%A0%88%EB%93%9C.md)
 18. [함수형 인터페이스](https://github.com/devholic22/Weekly_F-Lab_review/blob/main/java/18_%ED%95%A8%EC%88%98%ED%98%95_%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4.md)
 19. [Optional](https://github.com/devholic22/Weekly_F-Lab_review/blob/main/java/19_Optional.md)
+20. [메서드 레퍼런스](https://github.com/devholic22/Weekly_F-Lab_review/blob/main/java/20_%EB%A9%94%EC%84%9C%EB%93%9C_%EB%A0%88%ED%8D%BC%EB%9F%B0%EC%8A%A4.md)
